@@ -29,6 +29,32 @@ const BRIEF_STEPS = [
   },
 ];
 
+function readStorage(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(key, value) {
+  try {
+    localStorage.setItem(key, value);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function removeStorage(key) {
+  try {
+    localStorage.removeItem(key);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function Requirements() {
   const [formData, setFormData] = useState(initialRequirements);
   const [hasSavedRequirements, setHasSavedRequirements] = useState(false);
@@ -38,7 +64,7 @@ function Requirements() {
 
   useEffect(() => {
     try {
-      const savedRequirements = localStorage.getItem(STORAGE_KEY);
+      const savedRequirements = readStorage(STORAGE_KEY);
 
       if (savedRequirements) {
         const parsedRequirements = JSON.parse(savedRequirements);
@@ -98,10 +124,8 @@ function Requirements() {
       updatedAt: new Date().toISOString(),
     };
 
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(requirements));
-    } catch (saveError) {
-      console.error("Unable to save customer requirements:", saveError);
+    if (!writeStorage(STORAGE_KEY, JSON.stringify(requirements))) {
+      console.error("Unable to save customer requirements in browser storage.");
       setError("Requirements could not be saved in this browser.");
       return;
     }
@@ -112,10 +136,8 @@ function Requirements() {
   };
 
   const handleClear = () => {
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch (clearError) {
-      console.error("Unable to clear customer requirements:", clearError);
+    if (!removeStorage(STORAGE_KEY)) {
+      console.error("Unable to clear customer requirements from browser storage.");
       setError("Saved requirements could not be removed from this browser.");
       return;
     }

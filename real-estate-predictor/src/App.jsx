@@ -35,7 +35,12 @@ function App() {
       "estateai-token",
       "estateai-user",
     ]) {
-      localStorage.removeItem(key);
+      try {
+        localStorage.removeItem(key);
+      } catch {
+        // Storage can be unavailable in restricted browser modes; continue
+        // without crashing the app while restoring the user session.
+      }
     }
 
     async function restoreSession() {

@@ -110,9 +110,38 @@ function Icon({ name, className = "pv-icon" }) {
 
 const formatAmenities = (value) => value.split(",").join(" · ");
 
-function loadSavedForm() {
+function readStorage(key) {
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(key, value) {
+  try {
+    localStorage.setItem(key, value);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function removeStorage(key) {
+  try {
+    localStorage.removeItem(key);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function loadSavedForm() {
+  const savedValue = readStorage(STORAGE_KEY);
+  if (!savedValue) return { ...initialFormData };
+
+  try {
+    const saved = JSON.parse(savedValue);
     if (saved && typeof saved === "object") {
       const restored = { ...initialFormData };
       for (const key of Object.keys(initialFormData)) {
@@ -233,11 +262,7 @@ function PropertyForm({ onPrediction, onSubmittingChange }) {
   const [optionsRetry, setOptionsRetry] = useState(0);
 
   useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
-    } catch {
-      // Storage can be unavailable (private mode); persistence is optional.
-    }
+    writeStorage(STORAGE_KEY, JSON.stringify(formData));
   }, [formData]);
 
   useEffect(() => {
@@ -366,11 +391,7 @@ function PropertyForm({ onPrediction, onSubmittingChange }) {
     setErrors({});
     setFormError("");
     onPrediction?.(null, null);
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch {
-      // Nothing to clear when storage is unavailable.
-    }
+    removeStorage(STORAGE_KEY);
   };
 
   const filledRequired = REQUIRED_FIELDS.filter((field) =>

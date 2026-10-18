@@ -60,10 +60,15 @@ function Navbar({ user, onLogout }) {
   const [profileOpen, setProfileOpen] = useState(false);
 
   const [darkMode, setDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem("estateai-theme");
+    try {
+      const savedTheme = localStorage.getItem("estateai-theme");
 
-    if (savedTheme === "light") {
-      return false;
+      if (savedTheme === "light") {
+        return false;
+      }
+    } catch {
+      // Browsers with restricted storage access can reject localStorage.
+      // Default to dark mode instead of crashing the whole app.
     }
 
     return true;
@@ -79,7 +84,13 @@ function Navbar({ user, onLogout }) {
     const theme = darkMode ? "dark" : "light";
 
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("estateai-theme", theme);
+
+    try {
+      localStorage.setItem("estateai-theme", theme);
+    } catch {
+      // Storage may be blocked in private browsing or locked-down environments.
+      // The UI can still render with the current theme without failing.
+    }
   }, [darkMode]);
 
   /* =====================================================
