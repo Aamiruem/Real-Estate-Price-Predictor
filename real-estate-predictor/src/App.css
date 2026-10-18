@@ -1,0 +1,16 @@
+.session-status {
+  min-height: 45vh;
+  display: grid;
+  place-items: center;
+  color: var(--text-secondary, #b8c4d4);
+}
+
+.session-error {
+  width: min(1100px, 92%);
+  margin: 16px auto;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 100, 100, 0.35);
+  border-radius: 10px;
+  color: #ffb4b4;
+  background: rgba(180, 40, 40, 0.12);
+}

@@ -1,0 +1,129 @@
+/* Model insights panel — uses the tokens defined on .pv-page. */
+
+.pv-insights {
+  margin-top: 24px;
+  padding: clamp(20px, 3vw, 32px);
+}
+
+.pv-insights-head {
+  margin-bottom: 22px;
+}
+
+.pv-insights-head h2 {
+  margin: 8px 0 6px;
+  color: var(--pv-text);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.pv-insights-head p {
+  max-width: 560px;
+  margin: 0;
+  color: var(--pv-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.pv-feature-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pv-feature-list li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid var(--pv-border);
+  border-radius: var(--pv-radius-sm);
+  background: var(--pv-surface-raised);
+}
+
+.pv-feature-rank {
+  display: grid;
+  grid-row: span 2;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--pv-accent-soft);
+  color: var(--pv-accent-text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pv-feature-list li:first-child .pv-feature-rank {
+  background: var(--pv-accent);
+  color: var(--pv-on-accent);
+}
+
+.pv-feature-name {
+  overflow: hidden;
+  color: var(--pv-text);
+  font-size: 14px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pv-feature-value {
+  color: var(--pv-text-2);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.pv-feature-bar {
+  grid-column: 2 / -1;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--pv-border);
+}
+
+.pv-feature-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--pv-accent);
+}
+
+.pv-insights-foot {
+  margin: 18px 0 0;
+  color: var(--pv-muted);
+  font-size: 12.5px;
+}
+
+.pv-insights-state {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border: 1px dashed var(--pv-border-strong);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-muted);
+  font-size: 14px;
+}
+
+.pv-insights-error {
+  justify-content: space-between;
+  color: var(--pv-danger);
+}
+
+.pv-insights-error .pv-button {
+  min-height: 36px;
+}
+
+@media (max-width: 760px) {
+  .pv-feature-list {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,195 @@
+@import "tailwindcss" theme, utilities;
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: "Plus Jakarta Sans", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  background: var(--page-background);
+
+  color: var(--text-primary);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* =====================================================
+   DARK THEME
+===================================================== */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-primary: #0b1220;
+  --bg-secondary: #111d2d;
+  --bg-card: rgba(17, 29, 45, 0.86);
+  --bg-card-hover: rgba(215, 181, 109, 0.08);
+  --bg-navbar: rgba(10, 17, 27, 0.92);
+  --bg-dropdown: rgba(15, 23, 35, 0.98);
+
+  --page-background:
+    radial-gradient(ellipse at 12% 0%, rgba(94, 128, 188, 0.16), transparent 36%),
+    radial-gradient(ellipse at 90% 18%, rgba(215, 181, 109, 0.12), transparent 30%),
+    linear-gradient(180deg, #09131f 0%, #0c1726 36%, #0b1422 100%);
+
+  --text-primary: #f3f7ff;
+  --text-secondary: #c2ccdc;
+  --text-muted: #8ea0b8;
+  --text-faint: #72839a;
+
+  --border-color: rgba(148, 163, 184, 0.18);
+  --border-gold: rgba(215, 181, 109, 0.32);
+
+  --gold: #d9b86d;
+  --gold-light: #f0d897;
+  --gold-dark: #b78d4a;
+
+  --shadow: rgba(2, 6, 12, 0.45);
+  --footer-bg: #07121d;
+}
+
+
+/* =====================================================
+   LIGHT THEME
+===================================================== */
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-primary: #f5f7fa;
+
+  --bg-secondary: #ffffff;
+
+  --bg-card: #ffffff;
+
+  --bg-card-hover: #fffaf2;
+
+  --bg-navbar: rgba(255, 255, 255, 0.94);
+
+  --bg-dropdown: rgba(255, 255, 255, 0.98);
+
+  --page-background:
+    radial-gradient(ellipse at 10% 0%, rgba(94, 139, 189, 0.09), transparent 36%),
+    radial-gradient(ellipse at 95% 14%, rgba(181, 138, 59, 0.07), transparent 32%),
+    #f5f7fa;
+
+  --text-primary: #172337;
+
+  --text-secondary: #46566c;
+
+  --text-muted: #627187;
+
+  --text-faint: #7b8798;
+
+  --border-color: rgba(23, 35, 55, 0.1);
+
+  --border-gold: rgba(185, 152, 84, 0.3);
+
+  --gold: #b58a3b;
+
+  --gold-light: #d7b56d;
+
+  --gold-dark: #8e6b2d;
+
+  --shadow: rgba(24, 39, 60, 0.1);
+
+  --footer-bg: #edf0f4;
+}
+
+
+/* =====================================================
+   FORM ELEMENTS
+===================================================== */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+
+/* =====================================================
+   SHARED EYEBROW LABEL
+===================================================== */
+
+.section-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+[data-theme="light"] .section-label {
+  color: var(--gold-dark);
+}
+
+
+/* =====================================================
+   SELECTION
+===================================================== */
+
+::selection {
+  background: rgba(215, 181, 109, 0.3);
+
+  color: var(--text-primary);
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app-content {
+  min-height: calc(100vh - 76px);
+
+  background: var(--page-background);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* =====================================================
+   SMOOTH THEME TRANSITION
+===================================================== */
+
+.navbar,
+.mobile-navigation,
+.profile-dropdown,
+.feature-card,
+.step-card,
+.cta-section,
+.hero-image-card,
+.secondary-button,
+.dropdown-item,
+.site-footer {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}

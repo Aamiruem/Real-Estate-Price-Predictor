@@ -1,0 +1,111 @@
+/* Split-screen auth layout: photo panel beside the existing form card. */
+
+.auth-split {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 500px);
+  gap: 22px;
+  align-items: stretch;
+  width: min(100%, 1100px);
+  margin: 0 auto;
+}
+
+.auth-media {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 26px;
+  color: #eef3fb;
+  box-shadow: 0 26px 56px -30px rgba(7, 18, 29, 0.85);
+}
+
+.auth-media-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(0deg, rgba(7, 18, 29, 0.94) 0%, rgba(7, 18, 29, 0.55) 45%, rgba(7, 18, 29, 0.1) 80%);
+}
+
+.auth-media-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 14px;
+  width: 100%;
+  padding: clamp(24px, 3.5vw, 36px);
+}
+
+.auth-media-content .pb-badge {
+  align-self: flex-start;
+  padding-left: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.auth-media h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.auth-media ul {
+  display: grid;
+  gap: 10px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.auth-media li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #d5dde8;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.auth-media-check {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f3dc9d, #c99b50);
+  color: #1b1406;
+}
+
+.auth-media-check .pb-icon {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2.6;
+}
+
+/* The form card sits centred beside the photo */
+.auth-split > section {
+  align-self: center;
+  justify-self: center;
+}
+
+@media (max-width: 900px) {
+  .auth-split {
+    grid-template-columns: 1fr;
+    width: min(100%, 520px);
+  }
+
+  .auth-media {
+    min-height: 260px;
+  }
+
+  .auth-media ul {
+    display: none;
+  }
+}

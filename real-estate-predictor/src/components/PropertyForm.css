@@ -1,0 +1,452 @@
+/* Property details form — compact layout; uses the tokens defined on .pv-page. */
+
+.pv-form-card {
+  padding: 6px 22px 18px;
+}
+
+.pv-form-card > .pv-alert {
+  margin-top: 16px;
+}
+
+/* ---------- Sections ---------- */
+
+.pv-section {
+  min-width: 0;
+  margin: 0;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid var(--pv-border);
+}
+
+/* Heading row: highlighted section title, optional preview on the right */
+.pv-section-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.pv-section-top.has-aside {
+  flex-wrap: wrap;
+}
+
+.pv-section-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 5px 16px 5px 5px;
+  border: 1px solid var(--pv-accent-ring);
+  border-left: 3px solid var(--pv-accent);
+  border-radius: 12px;
+  background: linear-gradient(90deg, var(--pv-accent-soft), transparent 85%);
+  color: var(--pv-text);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.pv-section-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #f3c862, #2dd4bf 60%, #a78bfa);
+  color: #0b1a33;
+  box-shadow: 0 6px 14px -8px rgba(45, 212, 191, 0.9);
+}
+
+.pv-section-icon .pv-icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.1;
+}
+
+.pv-section-number {
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--pv-accent);
+  color: var(--pv-on-accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.pv-section-title {
+  white-space: nowrap;
+}
+
+.pv-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px 12px;
+}
+
+/* ---------- Fields ---------- */
+
+.pv-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pv-field > label,
+.pv-field-label {
+  overflow: hidden;
+  color: var(--pv-text-2);
+  font-size: 12px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pv-required {
+  margin-left: 3px;
+  color: var(--pv-accent-text);
+}
+
+.pv-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pv-control input,
+.pv-control select {
+  width: 100%;
+  height: 36px;
+  padding: 0 11px;
+  border: 1px solid var(--pv-border-strong);
+  border-radius: 9px;
+  background: var(--pv-field);
+  color: var(--pv-text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.pv-control input::placeholder {
+  color: var(--pv-muted);
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+.pv-control input:hover,
+.pv-control select:not(:disabled):hover {
+  background: var(--pv-field-hover);
+  border-color: var(--pv-muted);
+}
+
+.pv-control input:focus,
+.pv-control select:focus {
+  border-color: var(--pv-accent);
+  box-shadow: 0 0 0 3px var(--pv-accent-ring);
+}
+
+.pv-control select:disabled {
+  color: var(--pv-muted);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Native option lists don't inherit page tokens in every browser. */
+.pv-control select option {
+  background: var(--pv-surface);
+  color: var(--pv-text);
+}
+
+/* Hide number spinners; the suffix sits in their place. */
+.pv-control input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.pv-control input::-webkit-outer-spin-button,
+.pv-control input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.pv-control:has(.pv-suffix) input {
+  padding-right: 50px;
+}
+
+.pv-suffix {
+  position: absolute;
+  right: 11px;
+  color: var(--pv-muted);
+  font-size: 12px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.pv-select select {
+  padding-right: 30px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+.pv-select::after {
+  content: "";
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -5px;
+  border-right: 1.5px solid var(--pv-muted);
+  border-bottom: 1.5px solid var(--pv-muted);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.pv-field-hint {
+  color: var(--pv-muted);
+  font-size: 11.5px;
+}
+
+.pv-field-message {
+  color: var(--pv-danger);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.pv-field.has-error .pv-control input,
+.pv-field.has-error .pv-control select {
+  border-color: var(--pv-danger);
+}
+
+/* ---------- Facility toggle chips ---------- */
+
+.pv-facilities {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding-top: 2px;
+}
+
+.pv-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pv-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 12px 0 8px;
+  border: 1px solid var(--pv-border-strong);
+  border-radius: 999px;
+  background: var(--pv-field);
+  color: var(--pv-text-2);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.pv-chip:hover {
+  border-color: var(--pv-muted);
+  color: var(--pv-text);
+}
+
+.pv-chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pv-chip-box {
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid var(--pv-border-strong);
+  border-radius: 5px;
+  color: transparent;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.pv-chip-check {
+  width: 12px;
+  height: 12px;
+  stroke-width: 3;
+}
+
+.pv-chip.is-on {
+  border-color: var(--pv-accent);
+  background: var(--pv-accent-soft);
+  color: var(--pv-text);
+}
+
+.pv-chip.is-on .pv-chip-box {
+  border-color: var(--pv-accent);
+  background: var(--pv-accent);
+  color: var(--pv-on-accent);
+}
+
+.pv-chip:has(input:focus-visible) {
+  outline: 2px solid var(--pv-accent-ring);
+  outline-offset: 2px;
+}
+
+.pv-chip:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ---------- Actions ---------- */
+
+.pv-form-card form > .pv-alert {
+  margin-top: 14px;
+  padding: 9px 12px;
+  font-size: 13px;
+}
+
+.pv-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+}
+
+.pv-actions-meta {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.pv-action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.pv-action-buttons .pv-button {
+  min-height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.pv-action-buttons .pv-button-primary {
+  min-width: 168px;
+}
+
+.pv-model-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--pv-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pv-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pv-muted);
+}
+
+.pv-model-status.is-ready .pv-status-dot {
+  background: var(--pv-success);
+  box-shadow: 0 0 0 3px var(--pv-success-soft);
+}
+
+.pv-model-status.is-offline {
+  color: var(--pv-danger);
+}
+
+.pv-model-status.is-offline .pv-status-dot {
+  background: var(--pv-danger);
+}
+
+.pv-model-status.is-loading .pv-status-dot {
+  background: var(--pv-warning);
+}
+
+.pv-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pv-progress-track {
+  width: 120px;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--pv-border);
+}
+
+.pv-progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--pv-accent);
+  transition: width 0.3s ease;
+}
+
+.pv-progress-text {
+  color: var(--pv-muted);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1240px) and (min-width: 1081px), (max-width: 760px) {
+  .pv-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .pv-form-card {
+    padding: 4px 16px 16px;
+  }
+
+  .pv-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .pv-action-buttons .pv-button-primary {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pv-actions-meta {
+    align-items: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .pv-grid {
+    grid-template-columns: 1fr;
+  }
+}

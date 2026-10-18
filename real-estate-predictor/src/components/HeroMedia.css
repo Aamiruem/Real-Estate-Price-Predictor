@@ -1,0 +1,37 @@
+.hm-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  background: #0a1626;
+}
+
+.hm-image,
+.hm-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Slow "Ken Burns" drift so the photo feels alive without a video */
+.hm-image {
+  transform-origin: 60% 40%;
+  animation: hm-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes hm-drift {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.12) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-image {
+    animation: none;
+  }
+}

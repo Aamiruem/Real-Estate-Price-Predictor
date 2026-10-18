@@ -1,0 +1,82 @@
+[
+    {
+        "feature": "numeric__area",
+        "importance": 0.621161
+    },
+    {
+        "feature": "categorical__location_Delhi",
+        "importance": 0.148128
+    },
+    {
+        "feature": "categorical__location_Gurgaon",
+        "importance": 0.112316
+    },
+    {
+        "feature": "categorical__location_Noida",
+        "importance": 0.053168
+    },
+    {
+        "feature": "categorical__location_Greater Noida",
+        "importance": 0.026452
+    },
+    {
+        "feature": "categorical__location_Faridabad",
+        "importance": 0.021338
+    },
+    {
+        "feature": "numeric__metro_distance",
+        "importance": 0.001607
+    },
+    {
+        "feature": "categorical__property_type_Villa",
+        "importance": 0.001604
+    },
+    {
+        "feature": "numeric__total_floors",
+        "importance": 0.001332
+    },
+    {
+        "feature": "numeric__floor",
+        "importance": 0.001195
+    },
+    {
+        "feature": "numeric__property_age",
+        "importance": 0.001079
+    },
+    {
+        "feature": "numeric__school_distance",
+        "importance": 0.00106
+    },
+    {
+        "feature": "numeric__main_road_distance",
+        "importance": 0.000981
+    },
+    {
+        "feature": "numeric__hospital_distance",
+        "importance": 0.000954
+    },
+    {
+        "feature": "numeric__bedrooms",
+        "importance": 0.000628
+    },
+    {
+        "feature": "numeric__bathrooms",
+        "importance": 0.000603
+    },
+    {
+        "feature": "numeric__parking",
+        "importance": 0.00054
+    },
+    {
+        "feature": "categorical__property_type_Plot",
+        "importance": 0.000482
+    },
+    {
+        "feature": "numeric__balcony",
+        "importance": 0.000479
+    },
+    {
+        "feature": "categorical__furnishing_Fully Furnished",
+        "importance": 0.000325
+    }
+]
