@@ -41,7 +41,6 @@ from auth import (
     decode_token,
 )
 from auth_dependencies import (
-    ACCESS_COOKIE,
     REFRESH_COOKIE,
     clear_auth_cookies,
     get_current_user,
@@ -526,8 +525,14 @@ def login(
 
 
         if is_legacy_bcrypt_hash(user.password_hash):
-            user.password_hash = hash_password(data.password)
-            db.commit()
+            try:
+                user.password_hash = hash_password(data.password)
+                db.commit()
+            except Exception as error:
+                # The old hash still works, so an upgrade failure must not
+                # block a login with the correct password.
+                db.rollback()
+                print("PASSWORD REHASH ERROR:", repr(error))
 
 
         # ----------------------------------------------------
@@ -789,20 +794,7 @@ def prediction_options():
     try:
         options = get_model_category_options()
 
-        location_data = pd.read_csv(
-            DATASET_PATH,
-            usecols=["location", "locality"]
-        )
-        localities_by_location = {
-            str(location): sorted(
-                group["locality"]
-                .dropna()
-                .astype(str)
-                .unique()
-                .tolist()
-            )
-            for location, group in location_data.groupby("location")
-        }
+        localities_by_location = get_localities_by_location()
 
     except (KeyError, StopIteration, TypeError, ValueError) as error:
         print("PREDICTION OPTIONS ERROR:", repr(error))
@@ -841,6 +833,19 @@ def load_dataset() -> pd.DataFrame:
         frame["price_per_sqft"] = frame["price"] / frame["area"]
         _dataset_cache = frame
     return _dataset_cache
+
+
+def get_localities_by_location() -> dict[str, list[str]]:
+    return {
+        str(location): sorted(
+            group["locality"]
+            .dropna()
+            .astype(str)
+            .unique()
+            .tolist()
+        )
+        for location, group in load_dataset().groupby("location")
+    }
 
 
 def typical_value(series: pd.Series):
@@ -1049,7 +1054,7 @@ def predict(
     if model is None:
 
         raise HTTPException(
-            status_code=500,
+            status_code=503,
             detail="ML model is not loaded."
         )
 
@@ -1072,15 +1077,8 @@ def predict(
                     )
                 )
 
-        location_data = pd.read_csv(
-            DATASET_PATH,
-            usecols=["location", "locality"]
-        )
         valid_localities = set(
-            location_data.loc[
-                location_data["location"] == data.location,
-                "locality"
-            ].dropna().astype(str)
+            get_localities_by_location().get(data.location, [])
         )
         if data.locality not in valid_localities:
             raise HTTPException(
@@ -1404,7 +1402,7 @@ if __name__ == "__main__":
     )
 
     print(
-        "http://localhost:5174"
+        "http://localhost:5173"
     )
 
     print("=" * 70)

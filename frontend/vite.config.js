@@ -1,3 +1,4 @@
+import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { loadEnv } from "vite";
 
@@ -7,7 +8,7 @@ export default ({ mode }) => {
   const ragTarget = env.RAG_PROXY_TARGET || "http://127.0.0.1:8002";
 
   return {
-    plugins: [tailwindcss()],
+    plugins: [react(), tailwindcss()],
     // In development the browser calls /api and /ai on the Vite origin, so
     // auth cookies are first-party and no CORS preflight is needed.
     server: {

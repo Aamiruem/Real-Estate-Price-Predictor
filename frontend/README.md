@@ -10,7 +10,7 @@ session.
 1. Configure PostgreSQL and the API secrets using
    [`../backend/README.md`](../backend/README.md). Do not overwrite an
    existing `.env`; add the required settings to it.
-2. Start the FastAPI service on port 8000.
+2. Start the FastAPI service (`python main.py` in `../backend`, port 8001).
 3. From this folder, install the frontend dependencies and start Vite:
 
    ```powershell
@@ -18,8 +18,8 @@ session.
    npm run dev
    ```
 
-Open `http://localhost:5173`. The frontend calls `http://localhost:8001` by
-default. Set `VITE_API_URL` in a local `.env` file if the API is hosted
+Open `http://localhost:5173`. In development the frontend reaches the API through
+the Vite proxy (`/api` → port 8001). Set `VITE_API_URL` in a local `.env` file if the API is hosted
 elsewhere.
 
 ## Authentication flow

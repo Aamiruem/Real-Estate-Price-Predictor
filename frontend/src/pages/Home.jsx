@@ -353,7 +353,7 @@ function Home() {
             }
           }}
         >
-          <div className="home-image-frame aspect-[4/3] w-full">
+          <div className="home-image-frame aspect-4/3 w-full">
             {propertySlides.map((slide, index) => (
               <img
                 key={slide.title}
