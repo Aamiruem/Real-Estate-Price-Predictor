@@ -12,13 +12,13 @@ KNOWLEDGE_DIR = BASE_DIR / "knowledge_base"
 DATA_PATH = Path(
     os.getenv(
         "PROPERTY_DATA_PATH",
-        PROJECT_DIR / "ml_backend" / "data" / "property_data.csv",
+        PROJECT_DIR / "data" / "property_data.csv",
     )
 )
 MODEL_PATH = Path(
     os.getenv(
         "PRICE_MODEL_PATH",
-        PROJECT_DIR / "ml_backend" / "model" / "model.pkl",
+        PROJECT_DIR / "model" / "model.pkl",
     )
 )
 

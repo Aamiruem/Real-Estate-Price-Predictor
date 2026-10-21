@@ -24,7 +24,7 @@ Properties outside these cities, localities or types cannot be estimated.
 
 ## The historical dataset
 
-The dataset (ml_backend/data/property_data.csv) holds historical records with
+The dataset (data/property_data.csv) holds historical records with
 city, locality, property type, area, bedrooms, bathrooms, building details,
 amenities, distances to services and the recorded price. Statistics from it
 describe those records only. They are not current market quotes and should not

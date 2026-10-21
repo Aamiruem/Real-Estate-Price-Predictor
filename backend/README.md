@@ -15,14 +15,14 @@ keys with different, randomly generated values. Keep `.env` private.
 From the repository root:
 
 ```powershell
-docker compose --env-file ml_backend/.env up -d postgres
+docker compose --env-file backend/.env up -d postgres
 ```
 
 ## Set up Python and train the model
 
 Use Python 3.12 for the backend and training. In PowerShell, from
-`ml_backend` (or run the commands below from the repository root with
-`Set-Location .\ml_backend` first):
+`backend` (or run the commands below from the repository root with
+`Set-Location .\backend` first):
 
 ```powershell
 py -3.12 -m venv .venv312
@@ -39,13 +39,13 @@ command if another Python interpreter is selected.
 
 ## Start the API
 
-With `.venv312` activated, start the API from `ml_backend`:
+With `.venv312` activated, start the API from `backend`:
 
 ```powershell
 python main.py
 ```
 
-The API reads its configuration from `ml_backend\.env` regardless of the
+The API reads its configuration from `backend\.env` regardless of the
 PowerShell working directory. Port 8000 may already be used by another local
 service; set `API_PORT` in `.env` if 8001 is unavailable.
 

@@ -1,14 +1,14 @@
 # EstateIQ property valuation
 
 EstateIQ is a React/Vite frontend connected to the FastAPI service in
-`../ml_backend`. Sign-in and signup use HttpOnly access/refresh cookies. The
+`../backend`. Sign-in and signup use HttpOnly access/refresh cookies. The
 property prediction page and prediction API both require an authenticated
 session.
 
 ## Start the application
 
 1. Configure PostgreSQL and the API secrets using
-   [`../ml_backend/README.md`](../ml_backend/README.md). Do not overwrite an
+   [`../backend/README.md`](../backend/README.md). Do not overwrite an
    existing `.env`; add the required settings to it.
 2. Start the FastAPI service on port 8000.
 3. From this folder, install the frontend dependencies and start Vite:

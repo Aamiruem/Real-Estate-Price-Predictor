@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic
+# Data and price-model tools (same versions as the backend API so model.pkl loads)
+pandas
+numpy
+scikit-learn
+joblib

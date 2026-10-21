@@ -245,7 +245,7 @@ def run_tools(current: Plan) -> tuple[list[dict], list[Observation], list[dict]]
     steps: list[dict] = []
     observations: list[Observation] = []
     cards: list[dict] = []
-    dataset = "ml_backend/data/property_data.csv"
+    dataset = "data/property_data.csv"
 
     if current.carried_over:
         steps.append({"tool": "memory", "label": "Used the location from your previous question"})
@@ -263,7 +263,7 @@ def run_tools(current: Plan) -> tuple[list[dict], list[Observation], list[dict]]
         steps.append({"tool": "estimate_price", "label": "Ran the trained price model"})
         observations.append(Observation(
             "Model estimate",
-            "Trained Random Forest model (ml_backend/model/model.pkl)",
+            "Trained Random Forest model (model/model.pkl)",
             f"Estimated value {format_inr(result['estimate'])} "
             f"(₹{result['price_per_sqft']:,.0f}/sq ft) for "
             + ", ".join(f"{k}: {v}" for k, v in result["inputs"].items())
@@ -325,7 +325,7 @@ def run_tools(current: Plan) -> tuple[list[dict], list[Observation], list[dict]]
         steps.append({"tool": "model_factors", "label": "Read the model's feature importance"})
         observations.append(Observation(
             "Model feature importance",
-            "Trained Random Forest model (ml_backend/model/model.pkl)",
+            "Trained Random Forest model (model/model.pkl)",
             "Share of the model's decision weight: "
             + ", ".join(f"{f['factor']} {f['share'] * 100:.1f}%" for f in factors) + ".",
             "data",

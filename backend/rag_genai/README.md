@@ -7,8 +7,8 @@ A local AI assistant for EstateIQ. For each question it:
    key factors). Follow-ups like "And villas there?" reuse the previous
    location and are **rewritten** into a standalone question.
 2. **Acts** — runs tools on real project data:
-   - `market_stats` and `compare_markets` over `ml_backend/data/property_data.csv`
-   - `estimate_price` with the trained model `ml_backend/model/model.pkl`
+   - `market_stats` and `compare_markets` over `data/property_data.csv`
+   - `estimate_price` with the trained model `model/model.pkl`
    - `model_factors` from the model's feature importance
 3. **Retrieves** — hybrid search of `knowledge_base/` (BM25 keywords fused with
    `nomic-embed-text` embeddings via reciprocal rank fusion).
@@ -23,7 +23,7 @@ provider.
 
 ## Requirements
 
-- Python 3.12 (the `ml_backend/.venv312` environment already has every package)
+- Python 3.12 (the `backend/.venv312` environment already has every package)
 - [Ollama](https://ollama.com) running at `http://localhost:11434` with:
 
 ```powershell
@@ -35,11 +35,11 @@ ollama pull nomic-embed-text
 faster machine set `OLLAMA_CHAT_MODEL=qwen2.5:3b` (or `llama3.2`) in `.env` for
 better wording.
 
-## Run (PowerShell, from the project root)
+## Run (PowerShell, from the `backend` folder)
 
 ```powershell
 Copy-Item rag_genai\.env.example rag_genai\.env   # first time only
-ml_backend\.venv312\Scripts\python.exe -m uvicorn rag_genai.app.main:app --port 8002
+.venv312\Scripts\python.exe -m uvicorn rag_genai.app.main:app --port 8002
 ```
 
 Or with its own environment:
@@ -68,5 +68,5 @@ headings; restart the service to re-index.
 ## Test
 
 ```powershell
-ml_backend\.venv312\Scripts\python.exe -m unittest rag_genai.tests.test_rag
+.venv312\Scripts\python.exe -m unittest rag_genai.tests.test_rag
 ```

@@ -23,7 +23,7 @@ const CONTACT_DETAILS = [
   { icon: "pin", label: "Based in", value: "Gurgaon · Delhi-NCR" },
 ];
 
-// Must match ContactRequest.enquiry_type in ml_backend/schemas/schemas.py.
+// Must match ContactRequest.enquiry_type in backend/schemas/schemas.py.
 const ENQUIRY_TYPES = ["Property valuation", "Technical support", "General enquiry"];
 
 const initialForm = {
