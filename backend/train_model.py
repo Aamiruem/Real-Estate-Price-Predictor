@@ -1,15 +1,27 @@
+import subprocess
 import sys
 from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent
 TRAINING_ENV = BASE_DIR / ".venv312"
+TRAINING_PYTHON = TRAINING_ENV / "Scripts" / "python.exe"
 
+# The saved model must be trained with the project's pinned scikit-learn, so
+# re-run this script with .venv312 when another Python was used.
 if Path(sys.prefix).resolve() != TRAINING_ENV.resolve():
-    raise SystemExit(
-        "Use the project Python 3.12 environment to train the model. "
-        "In PowerShell run: "
-        ".\\.venv312\\Scripts\\Activate.ps1; python train_model.py"
+    if not TRAINING_PYTHON.exists():
+        raise SystemExit(
+            f"Project environment not found at {TRAINING_ENV}. Create it with: "
+            "py -3.12 -m venv .venv312; "
+            ".\\.venv312\\Scripts\\python.exe -m pip install -r requirement.txt"
+        )
+
+    print(f"Switching to the project environment: {TRAINING_PYTHON}", flush=True)
+    sys.exit(
+        subprocess.run(
+            [str(TRAINING_PYTHON), str(Path(__file__).resolve()), *sys.argv[1:]]
+        ).returncode
     )
 
 
